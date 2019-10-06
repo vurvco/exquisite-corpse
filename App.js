@@ -2,19 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import GifSlider from './GifSlider'
-
-const imageOptions = [
-  require('./assets/kitten3.jpeg'),
-  require('./assets/kitten2.gif'),
-  require('./assets/kitten.gif')
-]
+import images from './images.js'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <GifSlider justify='flex-start' images={imageOptions} />
-      <GifSlider justify='center' images={imageOptions} />
-      <GifSlider justify='flex-end' images={imageOptions} />
+      <GifSlider images={images.head} />
+      <GifSlider images={images.body} />
+      <GifSlider images={images.legs} />
     </View>
   );
 }
@@ -22,7 +17,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },

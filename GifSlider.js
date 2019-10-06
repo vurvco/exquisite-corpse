@@ -4,39 +4,21 @@ import {
   StyleSheet,
   Image,
   View,
-  Dimensions
 } from 'react-native';
 
-export default function GifSlider({
-  images,
-  justify = 'center'
-}) {
+export default function GifSlider({ images }) {
+  // Index of image to display
   const [image, setImage] = useState(0)
-  const [imgWidth, setImgWidth] = useState(Dimensions.get('window').width)
-  const [imgHeight, setImgHeight] = useState(Dimensions.get('window').height)
 
+  // Loop through image options
   function nextImage() {
-    // Loop through image options
     setImage((image + 1) % images.length)
-  }
-
-  function handleLayout(e) {
-    const { width, height } = e.nativeEvent.layout
-    setImgWidth(Math.ceil(width))
-    setImgHeight(Math.ceil(height))
-  }
-
-  const imgStyle = {
-    minWidth: imgWidth,
-    minHeight: imgHeight,
   }
 
   return (
     <TouchableWithoutFeedback onPress={nextImage}>
-      <View style={styles.container}
-        justifyContent={justify}
-        onLayout={handleLayout}>
-        <Image source={images[image]} style={imgStyle} />
+      <View style={styles.container}>
+        <Image source={images[image]} style={styles.image} />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -47,8 +29,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: '100%',
-    borderWidth: 2,
-    borderColor: '#000',
     overflow: 'hidden'
   },
+
+  image: {
+    height: '100%',
+    width: '33%'
+  }
 });
